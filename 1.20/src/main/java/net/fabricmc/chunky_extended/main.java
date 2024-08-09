@@ -30,7 +30,7 @@ public class main implements ModInitializer {
 		ModRegistries.registerCommands();
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-			if(server.getPlayerManager().getCurrentPlayerCount() == 0) {
+			if(server.getPlayerManager().getCurrentPlayerCount() >= 4) {
 				System.out.println("Ce : player joined, pausing chunky");
 				String command = "chunky pause";
 
@@ -47,7 +47,7 @@ public class main implements ModInitializer {
 
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
 			if(ModUtil.returnModEnabled()) {
-				if (server.getPlayerManager().getCurrentPlayerCount() == 1) {
+				if (server.getPlayerManager().getCurrentPlayerCount() <= 4) {
 					System.out.println("Ce : Last player left, resuming chunky");
 					String command = "chunky continue";
 
